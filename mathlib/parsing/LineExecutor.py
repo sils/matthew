@@ -1,3 +1,5 @@
+import sys
+
 __author__ = 'lasse'
 
 
@@ -24,8 +26,11 @@ class LineExecutor:
             print("This command '{}' is unsupported.".format(command))
             return None
 
-        retval = self.commands[command](*args, glob_vars=self.glob_vars)
-        self.glob_vars[self.ANS] = retval
+        try:
+            retval = self.commands[command](*args, glob_vars=self.glob_vars)
+            self.glob_vars[self.ANS] = retval
+        except:
+            print("An unknown error occurred.")
 
         print("Command '{}' returned: {} = {}".format(command, self.ANS, retval))
 
