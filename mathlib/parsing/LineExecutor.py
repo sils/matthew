@@ -33,7 +33,6 @@ class LineExecutor:
             self.glob_vars[self.ANS] = retval
         except:
             e = sys.exc_info()
-
             print("An unknown error occurred. Exception was a '{}' with message '{}'.".format(e[0].__name__, str(e[1])))
             return
 
