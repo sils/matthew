@@ -7,7 +7,7 @@ __author__ = 'lasse'
 class LineExecutor:
     ANS = "ans"
 
-    def __init__(self, commands={}, glob_vars={}):
+    def __init__(self, commands={}, glob_vars={"ans": None}):
         """
         :param commands: dictionary with command (string) as index and function pointer as value
         :param vars: dictionary with variable name (string) as index and variable as value
@@ -16,12 +16,7 @@ class LineExecutor:
         self.glob_vars = glob_vars
 
     def exec_line(self, line):
-        components = str(line).strip().lower().split(" ")
-        if len(components) < 1:
-            return None
-
-        command = components[0]
-        args = components[1:]
+        command, args = self.parse_line(line)
 
         if not command in self.commands:
             print("This command '{}' is unsupported.".format(command))
@@ -47,6 +42,14 @@ class LineExecutor:
         print("Command '{}' returned: {} = {}".format(command, self.ANS, retval))
 
         return retval
+
+    def parse_line(self, line):
+        # FIXME: obey ""s
+        components = str(line).strip().lower().split(" ")
+        if len(components) < 1:
+            return None
+
+        return components[0], components[1:]
 
 def atest(arg1, a2=3, *args, defarg=2, **kwargs):
     pass
