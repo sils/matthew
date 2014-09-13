@@ -21,7 +21,8 @@ commands = {
     "return": general._return,
     "let": general.let,
     "eval": general.save_eval,
-    "plot": plotting.plot
+    "plot": plotting.plot,
+    "help": general.help
 }
 
 import math

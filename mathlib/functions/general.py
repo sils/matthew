@@ -91,6 +91,14 @@ def save_eval(*args, glob_vars={}, printer=ConsolePrinter()):
     return eval(val)
 
 
+def help(glob_vars={}, printer=ConsolePrinter()):
+    from mathlib.functions.all import commands
+    printer.print("The following commands are available:")
+    for key in commands.keys():
+        printer.print("  {}".format(key))
+
+    return True
+
 def let(var, be, *vals, glob_vars={}, printer=ConsolePrinter()):
     if len(vals) < 1 or be.lower() != "be":
         printer.print("Invalid syntax: use 'let <yourvar> be <yourval(s)>'", color="red")
