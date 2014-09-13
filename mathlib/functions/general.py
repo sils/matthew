@@ -22,8 +22,8 @@ def _print(*args, glob_vars={}):
     print()
 
 
-def _return(arg, glob_vars={}):
-    return arg
+def _return(*args, glob_vars={}):
+    return save_eval(*args, glob_vars=glob_vars)
 
 
 def get_value(var, glob_vars={}):
@@ -58,8 +58,5 @@ def let(var, be, *vals, glob_vars={}):
     if len(vals) < 1 or be.lower() != "be":
         print("Invalid syntax: use 'let <yourvar> be <yourval(s)>'")
 
-    if len(vals) == 1:
-        vals = vals[0]
-
-    glob_vars[var] = vals
-    return vals
+    glob_vars[var] = save_eval(*vals, glob_vars=glob_vars)
+    return glob_vars[var]
