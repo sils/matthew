@@ -32,7 +32,9 @@ class LineExecutor:
             retval = cmd(*args, glob_vars=self.glob_vars)
             self.glob_vars[self.ANS] = retval
         except:
-            print("An unknown error occurred.")
+            e = sys.exc_info()
+
+            print("An unknown error occurred. Exception was a '{}' with message '{}'.".format(e[0].__name__, str(e[1])))
             return
 
         print("Command '{}' returned: {} = {}".format(command, self.ANS, retval))
