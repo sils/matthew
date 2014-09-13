@@ -15,24 +15,27 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import inspect
 import sys
+from mathlib.output.ConsolePrinter import ConsolePrinter
+
 
 class LineExecutor:
     ANS = "ans"
 
-    def __init__(self, commands={}, glob_vars={"ans": None}):
+    def __init__(self, commands={}, glob_vars={"ans": None}, printer=ConsolePrinter()):
         """
         :param commands: dictionary with command (string) as index and function pointer as value
         :param vars: dictionary with variable name (string) as index and variable as value
         """
         self.commands = commands
         self.glob_vars = glob_vars
+        self.printer = printer
 
     def exec_line(self, line):
         command, args = self.parse_line(line)
         if command is None: return
 
         if not command in self.commands:
-            print("This command '{}' is unsupported.".format(command))
+            self.printer.print("This command '{}' is unsupported.".format(command))
             return None
 
         cmd = self.commands[command]
@@ -48,10 +51,12 @@ class LineExecutor:
             if e[0] is SystemExit:
                 raise e[1]
 
-            print("An error occurred. It was an exception of the type '{}' with message '{}'.".format(e[0].__name__, str(e[1])))
+            self.printer.print("An error occurred. "
+                               "It was an exception of the type '{}' with message '{}'.".format(e[0].__name__,
+                                                                                                str(e[1])))
             return
 
-        print("Command '{}' returned: {} = {}".format(command, self.ANS, retval))
+        self.printer.print(" {} = {}".format(self.ANS, retval))
 
         return retval
 
@@ -70,9 +75,10 @@ class LineExecutor:
                  -len(argspec.defaults if argspec.defaults != None else [])
 
         if numargs < minlen:
-            print("Not enought arguments. The command '{}' needs at least {} argument(s). ({} given.)".format(cmdname,
-                                                                                                              minlen,
-                                                                                                              numargs))
+            self.printer.print("Not enought arguments. "
+                               "The command '{}' needs at least {} argument(s). ({} given.)".format(cmdname,
+                                                                                                    minlen,
+                                                                                                    numargs))
             return False
 
         if argspec.varargs is None:
@@ -80,13 +86,11 @@ class LineExecutor:
             if "glob_vars" in argspec.args:
                 maxlen -= 1
             if numargs > maxlen:
-                print("Too many arguments. The command '{}' supports {} to {} argument(s). ({} given.)".format(cmdname,
-                                                                                                               minlen,
-                                                                                                               maxlen,
-                                                                                                               numargs))
+                self.printer.print("Too many arguments. "
+                                   "The command '{}' supports {} to {} argument(s). ({} given.)".format(cmdname,
+                                                                                                        minlen,
+                                                                                                        maxlen,
+                                                                                                        numargs))
                 return False
 
         return True
-
-def atest(arg1, a2=3, *args, defarg=2, **kwargs):
-    pass
