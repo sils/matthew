@@ -14,8 +14,8 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 """
 import sys
 
-from coalib.output.ColorPrinter import ColorPrinter
-from coalib.output.LogPrinter import LogPrinter
+from mathlib.output.ColorPrinter import ColorPrinter
+from mathlib.output.LogPrinter import LogPrinter
 
 
 class ConsolePrinter(LogPrinter, ColorPrinter):

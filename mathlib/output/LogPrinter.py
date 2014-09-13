@@ -14,10 +14,24 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 """
 from datetime import datetime
 
-from coalib.output.LOG_LEVEL import LOG_LEVEL
-from coalib.output.Printer import Printer
-from coalib.misc.i18n import _
-from coalib.processes.communication.LogMessage import LogMessage
+from mathlib.output.LOG_LEVEL import LOG_LEVEL
+from mathlib.output.Printer import Printer
+
+
+class LogMessage:
+    def __init__(self, log_level, message):
+        if not log_level in [LOG_LEVEL.DEBUG, LOG_LEVEL.WARNING, LOG_LEVEL.ERROR]:
+            raise ValueError("log_level has to be a valid LOG_LEVEL.")
+        if message == "":
+            raise ValueError("Empty log messages are not allowed.")
+
+        self.log_level = log_level
+        self.message = str(message).strip()
+
+    def __str__(self):
+        return '[{}] {}'.format({LOG_LEVEL.DEBUG: "DEBUG",
+                                 LOG_LEVEL.WARNING: "WARNING",
+                                 LOG_LEVEL.ERROR: "ERROR"}.get(self.log_level, "ERROR"), self.message)
 
 
 class LogPrinter(Printer):
@@ -31,9 +45,9 @@ class LogPrinter(Printer):
         if datetime_string != "":
             datetime_string = "["+datetime_string+"]"
 
-        return '[{}]{} '.format({LOG_LEVEL.DEBUG: _("DEBUG"),
-                                 LOG_LEVEL.WARNING: _("WARNING"),
-                                 LOG_LEVEL.ERROR: _("ERROR")}.get(log_level, _("ERROR")),
+        return '[{}]{} '.format({LOG_LEVEL.DEBUG: "DEBUG",
+                                 LOG_LEVEL.WARNING: "WARNING",
+                                 LOG_LEVEL.ERROR: "ERROR"}.get(log_level, "ERROR"),
                                 datetime_string)
 
     def debug(self, message, timestamp=None, **kwargs):

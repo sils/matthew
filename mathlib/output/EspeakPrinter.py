@@ -14,9 +14,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 """
 import subprocess
 
-from coalib.misc.StringConstants import StringConstants
-from coalib.output.Printer import Printer
-from coalib.misc.i18n import _
+from mathlib.output.Printer import Printer
 
 
 class EspeakPrinter(Printer):
@@ -30,12 +28,12 @@ class EspeakPrinter(Printer):
         try:
             self.espeak = subprocess.Popen(['espeak'], stdin=subprocess.PIPE)
         except OSError:  # pragma: no cover
-            print(_("Espeak doesn't seem to be installed. You cannot use the voice output feature without espeak. "
-                    "It can be downloaded from http://espeak.sourceforge.net/ or installed via your usual package "
-                    "repositories."))
+            print("Espeak doesn't seem to be installed. You cannot use the voice output feature without espeak. "
+                  "It can be downloaded from http://espeak.sourceforge.net/ or installed via your usual package "
+                  "repositories.")
             raise EnvironmentError
         except:  # pragma: no cover
-            print(_("Failed to execute espeak. An unknown error occurred."), StringConstants.THIS_IS_A_BUG)
+            print("Failed to execute espeak. An unknown error occurred. This is a bug.")
             raise EnvironmentError
 
     def __del__(self):
