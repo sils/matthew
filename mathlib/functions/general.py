@@ -1,10 +1,11 @@
 import string
+import sys
 
 __author__ = 'lasse'
 
 
 def _exit(x=0, glob_vars={}):
-    exit(x)
+    sys.exit(x)
 
 
 def _print(*args, glob_vars={}):

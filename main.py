@@ -1,17 +1,16 @@
+from math import sin, exp
 from mathlib.functions.all import commands
 from mathlib.parsing.LineExecutor import LineExecutor
 
 __author__ = 'lasse'
 
-
-def _print(*args, glob_vars={}):
-    print(*args)
-
-def _exit(glob_vars={}):
-    exit(0)
-
 if __name__ == '__main__':
-    le = LineExecutor(commands=commands)
+    le = LineExecutor(commands=commands,
+                      glob_vars={
+                          "ans": None,
+                          "sin": sin,
+                          "exp": exp
+                      })
 
     prompt = "> "
     while True:
