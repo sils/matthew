@@ -46,7 +46,7 @@ class LineExecutor:
 
         # Execute!
         try:
-            retval = cmd(*args, glob_vars=self.glob_vars)
+            retval = cmd(*args, glob_vars=self.glob_vars, printer=self.printer)
             self.glob_vars[self.ANS] = retval
         except:
             e = sys.exc_info()
