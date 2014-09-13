@@ -25,7 +25,7 @@ class ConsolePrinter(LogPrinter, ColorPrinter):
         self.output = output
 
     def _print_uncolored(self, output, **kwargs):
-        print(output, file=self.output)
+        print(output, file=self.output, end="")
 
     def _print_colored(self, output, color=None, **kwargs):
         color_code_dict = {
