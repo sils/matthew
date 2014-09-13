@@ -15,9 +15,11 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 from matplotlib import pyplot
 from mathlib.functions.general import generate_function
+from mathlib.output.ConsolePrinter import ConsolePrinter
+
 
 def plot(*args, glob_vars={}):
-    func_str, unknowns = generate_function(*args, glob_vars=glob_vars)
+    func_str, unknowns = generate_function(*args, glob_vars=glob_vars, printer=ConsolePrinter())
 
     ylabel = ''
     for arg in args:
