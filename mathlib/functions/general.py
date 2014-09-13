@@ -81,6 +81,8 @@ def let(var, be, *vals, glob_vars={}):
         print("Invalid syntax: use 'let <yourvar> be <yourval(s)>'")
 
     val = save_eval(*vals, glob_vars=glob_vars)
+    if val is None:
+        return False
 
     glob_vars[var] = val
     return val

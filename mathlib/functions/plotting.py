@@ -12,7 +12,7 @@ def plot(*args, glob_vars={}):
         pyplot.plot(x, [y,y])
         pyplot.grid(True)
         pyplot.show()
-        return
+        return True
 
     if len(unknowns) == 1:
         glob_vars[unknowns[0]] = 0
@@ -28,7 +28,8 @@ def plot(*args, glob_vars={}):
         pyplot.show()
 
         del glob_vars[unknowns[0]]
-        return
+        return True
 
     print("Too many unknown variables. Only up to one dimensional functions can be plotted.")
     print(unknowns)
+    return False
