@@ -9,7 +9,7 @@ def plot(*args, glob_vars={}):
     if len(unknowns) == 0:
         x = [-10,10]
         y = eval(func_str)
-        pyplot.plot(x, [y,y])
+        pyplot.plot(x, [y, y])
         pyplot.grid(True)
         pyplot.show()
         return True
