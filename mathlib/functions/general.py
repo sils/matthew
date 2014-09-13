@@ -63,7 +63,7 @@ def generate_function(*args, glob_vars={}):
         for char in arg:
             if char in operator_chars:
                 s, allok = makevar(variable, glob_vars)
-                if not allok:
+                if not allok and not variable in unknown_vars:
                     unknown_vars.append(variable)
                 save_str += s + char
                 variable = ""
@@ -71,9 +71,11 @@ def generate_function(*args, glob_vars={}):
                 variable += char
 
         s, allok = makevar(variable, glob_vars)
-        if not allok:
+        if not allok and not variable in unknown_vars:
             unknown_vars.append(variable)
         save_str += s
+
+
     return save_str, unknown_vars
 
 

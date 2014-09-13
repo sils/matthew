@@ -52,7 +52,7 @@ def plot(*args, glob_vars={}):
                 y.append(s)
                 evaluation_failures = 0
             except:
-                print("Failed evaluating function for {}={}".format(unknown, glob_vars[unknown]))
+                print("Failed evaluating function for {}={}. (Singularity?)".format(unknown, glob_vars[unknown]))
                 evaluation_failures += 1
                 if evaluation_failures > 10:
                     print("There were 10 evaluation failures in a row. "
