@@ -5,5 +5,6 @@ from mathlib.functions import general
 commands = {
     "exit": general._exit,
     "print": general._print,
-    "return": general._return
+    "return": general._return,
+    "let": general.let
 }
