@@ -9,7 +9,8 @@ if __name__ == '__main__':
                       glob_vars={
                           "ans": None,
                           "sin": sin,
-                          "exp": exp
+                          "exp": exp,
+                          "pow": pow
                       })
 
     prompt = "> "

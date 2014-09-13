@@ -1,17 +1,34 @@
-from math import sin
 from matplotlib import pyplot
+from mathlib.functions.general import generate_function
 
 __author__ = 'lasse'
 
-def plot(function, glob_vars={}):
-    func = glob_vars[function]
-    x=[]
-    y = []
-    for x_scaled in range(-100,100,1):
-        unscaled = float(x_scaled/10)
-        x.append(unscaled)
-        y.append(float(func(unscaled)))
+def plot(*args, glob_vars={}):
+    func_str, unknowns = generate_function(*args, glob_vars=glob_vars)
 
-    pyplot.plot(x, y)
-    pyplot.grid(True)
-    pyplot.show()
+    if len(unknowns) == 0:
+        x = [-10,10]
+        y = eval(func_str)
+        pyplot.plot(x, [y,y])
+        pyplot.grid(True)
+        pyplot.show()
+        return
+
+    if len(unknowns) == 1:
+        glob_vars[unknowns[0]] = 0
+        y = []
+        x = []
+        for x_scaled in range(-100,100,1):
+            glob_vars[unknowns[0]] = x_scaled/10
+            x.append(glob_vars[unknowns[0]])
+            y.append(eval(func_str))
+
+        pyplot.plot(x, y)
+        pyplot.grid(True)
+        pyplot.show()
+
+        del glob_vars[unknowns[0]]
+        return
+
+    print("Too many unknown variables. Only up to one dimensional functions can be plotted.")
+    print(unknowns)

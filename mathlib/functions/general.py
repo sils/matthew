@@ -34,14 +34,14 @@ def makevar(variable, glob_vars={}):
     if variable in glob_vars:
         return "glob_vars[\""+variable+"\"]", True
 
-    if variable.isnumeric():
+    if variable.replace(".", "", 1).isnumeric():
         return variable, True
 
-    return variable, False
+    return "glob_vars[\""+variable+"\"]", False
 
 
 variable_chars = string.ascii_letters + "_" + string.digits
-operator_chars = "+-*/%()"
+operator_chars = "+-*/%(),"
 def generate_function(*args, glob_vars={}):
     save_str = ""
     unknown_vars = []
@@ -51,7 +51,7 @@ def generate_function(*args, glob_vars={}):
             if char in operator_chars:
                 s, allok = makevar(variable, glob_vars)
                 if not allok:
-                    unknown_vars.append(s)
+                    unknown_vars.append(variable)
                 save_str += s + char
                 variable = ""
             else:
@@ -59,7 +59,7 @@ def generate_function(*args, glob_vars={}):
 
         s, allok = makevar(variable, glob_vars)
         if not allok:
-            unknown_vars.append(s)
+            unknown_vars.append(variable)
         save_str += s
     return save_str, unknown_vars
 
