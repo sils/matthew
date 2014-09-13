@@ -10,3 +10,21 @@ commands = {
     "eval": general.save_eval,
     "plot": plotting.plot
 }
+
+import math
+
+glob_vars={
+    "ans": None,
+    "sin": math.sin,
+    "cos": math.cos,
+    "sinh": math.sinh,
+    "cosh": math.cosh,
+    "asin": math.asin,
+    "acos": math.acos,
+    "asinh": math.asinh,
+    "acosh": math.acosh,
+    "exp": math.exp,
+    "e": math.e,
+    "pi": math.pi,
+    "pow": pow
+}
