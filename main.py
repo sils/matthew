@@ -1,3 +1,4 @@
+from mathlib.functions.all import commands
 from mathlib.parsing.LineExecutor import LineExecutor
 
 __author__ = 'lasse'
@@ -10,10 +11,7 @@ def _exit(glob_vars={}):
     exit(0)
 
 if __name__ == '__main__':
-    le = LineExecutor(commands={
-        "print": _print,
-        "exit": _exit
-    })
+    le = LineExecutor(commands=commands)
 
     prompt = "> "
     while True:
