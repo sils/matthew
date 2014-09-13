@@ -1,3 +1,4 @@
+import inspect
 import sys
 
 __author__ = 'lasse'
@@ -26,12 +27,26 @@ class LineExecutor:
             print("This command '{}' is unsupported.".format(command))
             return None
 
+        # Check nargs
+        cmd = self.commands[command]
+        argspec = inspect.getfullargspec(cmd)
+        minlen = len(argspec.args if argspec.args != None else [])\
+                 - len(argspec.defaults if argspec.defaults != None else [])
+        if len(args) < minlen:
+            print("The command '{}' needs at least {} argument(s). ({} given.)".format(command, minlen, len(args)))
+            return
+
+        # Execute!
         try:
-            retval = self.commands[command](*args, glob_vars=self.glob_vars)
+            retval = cmd(*args, glob_vars=self.glob_vars)
             self.glob_vars[self.ANS] = retval
         except:
             print("An unknown error occurred.")
+            return
 
         print("Command '{}' returned: {} = {}".format(command, self.ANS, retval))
 
         return retval
+
+def atest(arg1, a2=3, *args, defarg=2, **kwargs):
+    pass
