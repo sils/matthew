@@ -21,5 +21,10 @@ if __name__ == '__main__':
                       glob_vars=glob_vars)
 
     prompt = "> "
-    while True:
-        le.exec_line(input(prompt))
+    try:
+        while True:
+            le.exec_line(input(prompt))
+    except KeyboardInterrupt:
+        pass
+    except EOFError:
+        pass
