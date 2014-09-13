@@ -32,10 +32,12 @@ class LineExecutor:
 
     def exec_line(self, line):
         command, args = self.parse_line(line)
-        if command is None: return
+
+        if command == '':
+            return
 
         if not command in self.commands:
-            self.printer.print("This command '{}' is unsupported.".format(command))
+            self.printer.print("The command '{}' is unsupported.".format(command))
             return None
 
         cmd = self.commands[command]
@@ -63,8 +65,9 @@ class LineExecutor:
     def parse_line(self, line):
         # FIXME: obey ""s
         components = str(line).strip().lower().split(" ")
-        if len(components) < 1:
-            return None, None
+
+        for key, val in enumerate(components):
+            components[key] = val.strip()
 
         return components[0], components[1:]
 
