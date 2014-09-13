@@ -16,16 +16,20 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 """
 
 from mathlib.functions.all import commands, glob_vars
+from mathlib.output.ConsolePrinter import ConsolePrinter
 from mathlib.parsing.LineExecutor import LineExecutor
+import readline
 
 if __name__ == '__main__':
+    printer = ConsolePrinter()
     le = LineExecutor(commands=commands,
-                      glob_vars=glob_vars)
+                      glob_vars=glob_vars,
+                      printer=printer)
 
     prompt = "> "
     try:
         while True:
-            le.exec_line(input(prompt))
+            le.exec_line(input("> "))
     except KeyboardInterrupt:
         pass
     except EOFError:

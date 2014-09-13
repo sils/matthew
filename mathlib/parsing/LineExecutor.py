@@ -37,7 +37,8 @@ class LineExecutor:
             return
 
         if not command in self.commands:
-            self.printer.print("The command '{}' is unsupported.".format(command))
+            self.printer.print("The command '{}' is unsupported.".format(command),
+                               color="red")
             return None
 
         cmd = self.commands[command]
@@ -55,10 +56,11 @@ class LineExecutor:
 
             self.printer.print("An error occurred. "
                                "It was an exception of the type '{}' with message '{}'.".format(e[0].__name__,
-                                                                                                str(e[1])))
+                                                                                                str(e[1])),
+                               color="red")
             return
 
-        self.printer.print(" {} = {}".format(self.ANS, retval))
+        self.printer.print("\n {} = {}".format(self.ANS, retval), color='dark gray')
 
         return retval
 
@@ -81,7 +83,8 @@ class LineExecutor:
             self.printer.print("Not enought arguments. "
                                "The command '{}' needs at least {} argument(s). ({} given.)".format(cmdname,
                                                                                                     minlen,
-                                                                                                    numargs))
+                                                                                                    numargs),
+                               color="red")
             return False
 
         if argspec.varargs is None:
@@ -93,7 +96,8 @@ class LineExecutor:
                                    "The command '{}' supports {} to {} argument(s). ({} given.)".format(cmdname,
                                                                                                         minlen,
                                                                                                         maxlen,
-                                                                                                        numargs))
+                                                                                                        numargs),
+                                   color="red")
                 return False
 
         return True

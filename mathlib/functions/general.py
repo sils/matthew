@@ -85,7 +85,7 @@ def save_eval(*args, glob_vars={}, printer=ConsolePrinter()):
         printer.print("The following variables are undefined:")
         for var in unknown:
             printer.print("  {}".format(var))
-        printer.print("Evaluation not possible.")
+        printer.print("Evaluation not possible.", color="red")
         return None
 
     return eval(val)
@@ -93,7 +93,7 @@ def save_eval(*args, glob_vars={}, printer=ConsolePrinter()):
 
 def let(var, be, *vals, glob_vars={}, printer=ConsolePrinter()):
     if len(vals) < 1 or be.lower() != "be":
-        printer.print("Invalid syntax: use 'let <yourvar> be <yourval(s)>'")
+        printer.print("Invalid syntax: use 'let <yourvar> be <yourval(s)>'", color="red")
 
     val = save_eval(*vals, glob_vars=glob_vars, printer=printer)
     if val is None:

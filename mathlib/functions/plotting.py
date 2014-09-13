@@ -18,8 +18,8 @@ from mathlib.functions.general import generate_function
 from mathlib.output.ConsolePrinter import ConsolePrinter
 
 
-def plot(*args, glob_vars={}):
-    func_str, unknowns = generate_function(*args, glob_vars=glob_vars, printer=ConsolePrinter())
+def plot(*args, glob_vars={}, printer=ConsolePrinter()):
+    func_str, unknowns = generate_function(*args, glob_vars=glob_vars, printer=printer)
 
     ylabel = ''
     for arg in args:
@@ -28,7 +28,7 @@ def plot(*args, glob_vars={}):
     pyplot.ylabel(ylabel)
 
     if len(unknowns) == 0:
-        print("Plotting '{}' with no variables...".format(ylabel))
+        printer.print("Plotting '{}' with no variables...".format(ylabel))
         x = [-10,10]
         try:
             y = eval(func_str)
@@ -37,11 +37,12 @@ def plot(*args, glob_vars={}):
             pyplot.show()
             return True
         except:
-            print("Cannot evaluate expresssion. Aborting plot...")
+            printer.print("Cannot evaluate expresssion. Aborting plot...",
+                          color="red")
 
     if len(unknowns) == 1:
         unknown = unknowns[0]
-        print("Plotting '{}' with variable '{}'...".format(ylabel, unknown))
+        printer.print("Plotting '{}' with variable '{}'...".format(ylabel, unknown))
         glob_vars[unknown] = 0
         y = []
         x = []
@@ -54,11 +55,11 @@ def plot(*args, glob_vars={}):
                 y.append(s)
                 evaluation_failures = 0
             except:
-                print("Failed evaluating function for {}={}. (Singularity?)".format(unknown, glob_vars[unknown]))
+                printer.print("Failed evaluating function for {}={}. (Singularity?)".format(unknown, glob_vars[unknown]))
                 evaluation_failures += 1
                 if evaluation_failures > 10:
-                    print("There were 10 evaluation failures in a row. "
-                          "Assuming function is not plottable. Aborting plot...")
+                    printer.print("There were 10 evaluation failures in a row. "
+                                  "Assuming function is not plottable. Aborting plot...", color="red")
                     del glob_vars[unknown]
                     return False
 
@@ -71,6 +72,6 @@ def plot(*args, glob_vars={}):
         del glob_vars[unknown]
         return True
 
-    print("Too many unknown variables. Only up to one dimensional functions can be plotted.")
-    print("Unknown variables are:", unknowns)
+    printer.print("Too many unknown variables. Only up to one dimensional functions can be plotted.", color="red")
+    printer.print("Unknown variables are:", unknowns)
     return False
