@@ -36,7 +36,10 @@ def plot(*args, glob_vars={}, printer=ConsolePrinter()):
             y = eval(func_str)
 
             if isinstance(y, ndarray):
-                pyplot.plot(y)
+                if len(y.shape) > 2:
+                    pyplot.imshow(y)
+                else:
+                    pyplot.plot(y)
             else:
                 x = [-10, 10]
                 pyplot.plot(x, [y, y])

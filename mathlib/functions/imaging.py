@@ -13,33 +13,12 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 """
 
-from mathlib.functions import general, plotting, imaging
+import matplotlib.image as mpimage
+from mathlib.output.ConsolePrinter import ConsolePrinter
 
-commands = {
-    "exit": general._exit,
-    "print": general._print,
-    "return": general._return,
-    "let": general.let,
-    "eval": general.save_eval,
-    "plot": plotting.plot,
-    "help": general.help,
-    "load": imaging.load
-}
 
-import math
+def load(img, into, varname, glob_vars={}, printer=ConsolePrinter()):
+    if into.lower() != "into":
+        printer.print("Invalid syntax: use 'load <path> into <yourvar>'", color="red")
 
-glob_vars={
-    "ans": None,
-    "sin": math.sin,
-    "cos": math.cos,
-    "sinh": math.sinh,
-    "cosh": math.cosh,
-    "asin": math.asin,
-    "acos": math.acos,
-    "asinh": math.asinh,
-    "acosh": math.acosh,
-    "exp": math.exp,
-    "e": math.e,
-    "pi": math.pi,
-    "pow": pow
-}
+    glob_vars[varname] = mpimage.imread(img)
