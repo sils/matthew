@@ -14,6 +14,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 """
 
 from matplotlib import pyplot
+from numpy import *
 from mathlib.functions.general import generate_function
 from mathlib.output.ConsolePrinter import ConsolePrinter
 
@@ -29,16 +30,20 @@ def plot(*args, glob_vars={}, printer=ConsolePrinter()):
 
     if len(unknowns) == 0:
         printer.print("Plotting '{}' with no variables...".format(ylabel))
-        x = [-10,10]
         try:
             y = eval(func_str)
-            pyplot.plot(x, [y, y])
+            if isinstance(y, ndarray):
+                pyplot.plot(list(y))
+            else:
+                x = [-10, 10]
+                pyplot.plot(x, [y, y])
             pyplot.grid(True)
             pyplot.show()
             return True
         except:
             printer.print("Cannot evaluate expresssion. Aborting plot...",
                           color="red")
+            return False
 
     if len(unknowns) == 1:
         unknown = unknowns[0]
