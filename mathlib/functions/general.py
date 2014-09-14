@@ -17,6 +17,7 @@ import string
 import sys
 from numpy import *
 from mathlib.output.ConsolePrinter import ConsolePrinter
+from mathlib.parsing.LineExecutor import LineExecutor
 
 
 def _exit(x=0, glob_vars={}, printer=ConsolePrinter()):
@@ -124,3 +125,13 @@ def let(var, be, *vals, glob_vars={}, printer=ConsolePrinter()):
 
     glob_vars[var] = val
     return val
+
+def execute(f, glob_vars={}, printer=ConsolePrinter()):
+    from mathlib.functions.all import commands
+    parser = LineExecutor(commands=commands, glob_vars=glob_vars, printer=printer)
+    file = open(f, "r")
+    lines = file.readlines()
+    for line in lines:
+        parser.exec_line(line)
+
+    return glob_vars["ans"]

@@ -15,6 +15,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import inspect
 import sys
+import traceback
 from mathlib.output.ConsolePrinter import ConsolePrinter
 
 
@@ -54,6 +55,7 @@ class LineExecutor:
             if e[0] is SystemExit:
                 raise e[1]
 
+            traceback.print_tb(sys.exc_info()[2])
             self.printer.print("An error occurred. "
                                "It was an exception of the type '{}' with message '{}'.".format(e[0].__name__,
                                                                                                 str(e[1])),

@@ -21,4 +21,9 @@ def load(img, into, varname, glob_vars={}, printer=ConsolePrinter()):
     if into.lower() != "into":
         printer.print("Invalid syntax: use 'load <path> into <yourvar>'", color="red")
 
+    # FIXME check path
     glob_vars[varname] = mpimage.imread(img)
+
+def convolute(*args, glob_vars={}, printer=ConsolePrinter()):
+    if not "and" in args:
+        printer.print("Invalid syntax: use 'convolute <expr> and <expr>'", color="red")

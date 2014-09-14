@@ -23,7 +23,9 @@ commands = {
     "eval": general.save_eval,
     "plot": plotting.plot,
     "help": general.help,
-    "load": imaging.load
+    "load": imaging.load,
+    "convolute": imaging.convolute,
+    "execute": general.execute
 }
 
 import math
