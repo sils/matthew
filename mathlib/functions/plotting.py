@@ -12,11 +12,13 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 """
+import traceback
 
 from matplotlib import pyplot
 from numpy import *
 from mathlib.functions.general import generate_function
 from mathlib.output.ConsolePrinter import ConsolePrinter
+import sys
 
 
 def plot(*args, glob_vars={}, printer=ConsolePrinter()):
@@ -32,8 +34,9 @@ def plot(*args, glob_vars={}, printer=ConsolePrinter()):
         printer.print("Plotting '{}' with no variables...".format(ylabel))
         try:
             y = eval(func_str)
+
             if isinstance(y, ndarray):
-                pyplot.plot(list(y))
+                pyplot.plot(y)
             else:
                 x = [-10, 10]
                 pyplot.plot(x, [y, y])
@@ -41,6 +44,7 @@ def plot(*args, glob_vars={}, printer=ConsolePrinter()):
             pyplot.show()
             return True
         except:
+            traceback.print_tb(sys.exc_info()[2])
             printer.print("Cannot evaluate expresssion. Aborting plot...",
                           color="red")
             return False
