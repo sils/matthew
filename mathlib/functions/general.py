@@ -57,7 +57,7 @@ def makevar(variable, glob_vars={}, printer=ConsolePrinter()):
 
 
 variable_chars = string.ascii_letters + "_" + string.digits
-operator_chars = "+-*/%(),[]"
+operator_chars = "+-*/%(),[]{}:"
 def generate_function(*args, glob_vars={}, printer=ConsolePrinter()):
     save_str = ""
     unknown_vars = []

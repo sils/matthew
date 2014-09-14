@@ -43,11 +43,13 @@ def plot(*args, glob_vars={}, printer=ConsolePrinter()):
             else:
                 x = [-10, 10]
                 pyplot.plot(x, [y, y])
+
             pyplot.grid(True)
             pyplot.show()
             return True
         except:
             traceback.print_tb(sys.exc_info()[2])
+            print(sys.exc_info())
             printer.print("Cannot evaluate expresssion. Aborting plot...",
                           color="red")
             return False
