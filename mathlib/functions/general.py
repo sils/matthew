@@ -128,6 +128,7 @@ def let(var, be, *vals, glob_vars={}, printer=ConsolePrinter()):
 
 def execute(f, glob_vars={}, printer=ConsolePrinter()):
     from mathlib.functions.all import commands
+    # TODO take a logprinter here
     parser = LineExecutor(commands=commands, glob_vars=glob_vars, printer=printer)
     file = open(f, "r")
     lines = file.readlines()
