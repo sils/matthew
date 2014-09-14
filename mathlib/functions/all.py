@@ -24,7 +24,6 @@ commands = {
     "plot": plotting.plot,
     "help": general.help,
     "load": imaging.load,
-    "convolute": imaging.convolute,
     "execute": general.execute
 }
 
