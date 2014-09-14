@@ -15,6 +15,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 import string
 import sys
+from numpy import *
 from mathlib.output.ConsolePrinter import ConsolePrinter
 
 
@@ -55,10 +56,11 @@ def makevar(variable, glob_vars={}, printer=ConsolePrinter()):
 
 
 variable_chars = string.ascii_letters + "_" + string.digits
-operator_chars = "+-*/%(),"
+operator_chars = "+-*/%(),[]"
 def generate_function(*args, glob_vars={}, printer=ConsolePrinter()):
     save_str = ""
     unknown_vars = []
+    open_square_brackets = 0
     for arg in args:
         variable = ""
         for char in arg:
@@ -66,8 +68,21 @@ def generate_function(*args, glob_vars={}, printer=ConsolePrinter()):
                 s, allok = makevar(variable, glob_vars, printer=printer)
                 if not allok and not variable in unknown_vars:
                     unknown_vars.append(variable)
-                save_str += s + char
+                save_str += s
                 variable = ""
+
+                if char == "[":
+                    open_square_brackets += 1
+                    if open_square_brackets == 1:
+                        save_str += "array(["
+                    else: save_str += "["
+                elif char == "]":
+                    open_square_brackets -= 1
+                    if open_square_brackets == 0:
+                        save_str += "])"
+                    else: save_str += "]"
+                else:
+                    save_str += char
             else:
                 variable += char
 
