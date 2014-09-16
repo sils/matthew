@@ -1,0 +1,7 @@
+let input be [1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,0,0,0,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1]
+let blurring be blur_matrix(42,0.02)
+vmult input with blurring
+let blurred be ans
+invert blurring
+let unblurring be ans
+
