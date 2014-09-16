@@ -104,7 +104,8 @@ def seperate_by_keywords(args, keywords):
             if arg in result.keys():
                 curr = arg+"__"+str(i)
                 i += 1
-            curr = arg
+            else:
+                curr = arg
         else:
             if curr in result.keys():
                 result[curr] += " "+arg

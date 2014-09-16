@@ -28,7 +28,8 @@ commands = {
     "blur": barcoding.convolute,
     "mmult": barcoding.mmult,
     "vmult": barcoding.vmult,
-    "len": general._len
+    "len": general._len,
+    "invert": barcoding.invert
 }
 
 import math

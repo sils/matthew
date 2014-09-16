@@ -41,6 +41,12 @@ def convolute(*args, glob_vars={}, printer=ConsolePrinter()):
     return array(res)
 
 
+def invert(*args, glob_vars={}, printer=ConsolePrinter()):
+    val = save_eval(*args, glob_vars=glob_vars, printer=printer)
+    m = matrix(val)
+    return array(m.I)
+
+
 def mmult(*args, glob_vars={}, printer=ConsolePrinter()):
     args = seperate_by_keywords(args, ["with"])
     first=save_eval(args[None], glob_vars=glob_vars, printer=printer)
