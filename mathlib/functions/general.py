@@ -25,24 +25,9 @@ def _exit(x=0, glob_vars={}, printer=ConsolePrinter()):
 
 
 def _print(*args, glob_vars={}, printer=ConsolePrinter()):
-    for arg in args:
-        arg = str(arg)
-        if arg[0] == arg[-1] == '"':
-            printer.print(arg[1:-1], end="")
-            continue
+    printer.print(*args)
 
-        if str(arg).lower() in glob_vars:
-            printer.print(str(glob_vars[arg.lower()]), end="")
-            continue
-
-        printer.print(arg, end="")
-
-    printer.print()
-
-
-def _return(*args, glob_vars={}, printer=ConsolePrinter()):
-    s, ok = generate_function(*args, glob_vars=glob_vars, printer=printer)
-    return eval(s)
+    return glob_vars["ans"]
 
 
 def makevar(variable, glob_vars={}, printer=ConsolePrinter()):
@@ -95,6 +80,10 @@ def generate_function(*args, glob_vars={}, printer=ConsolePrinter()):
         save_str += s
 
     return save_str, unknown_vars
+
+
+def comment(*args, glob_vars={}, printer=ConsolePrinter()):
+    return glob_vars["ans"]
 
 
 def seperate_by_keywords(args, keywords):

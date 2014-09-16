@@ -18,7 +18,7 @@ from mathlib.functions import general, plotting, imaging, barcoding
 commands = {
     "exit": general._exit,
     "print": general._print,
-    "return": general._return,
+    "return": general.save_eval,
     "let": general.let,
     "eval": general.save_eval,
     "plot": plotting.plot,
@@ -30,7 +30,9 @@ commands = {
     "vmult": barcoding.vmult,
     "len": general._len,
     "invert": barcoding.invert,
-    "disturb": barcoding.disturb
+    "disturb": barcoding.disturb,
+    "#": general.comment,
+    "//": general.comment
 }
 
 import math
