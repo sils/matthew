@@ -16,18 +16,33 @@ import traceback
 
 from matplotlib import pyplot
 from numpy import *
-from mathlib.functions.general import generate_function
+from mathlib.functions.general import generate_function, seperate_by_keywords
 from mathlib.output.ConsolePrinter import ConsolePrinter
 import sys
 
 
 def plot(*args, glob_vars={}, printer=ConsolePrinter()):
-    func_str, unknowns = generate_function(*args, glob_vars=glob_vars, printer=printer)
+    splitted = seperate_by_keywords(args, ["and"])
+    print(splitted)
+    succeeded = False
+    lab = ""
+    for val in splitted.values():
+        lab = lab + val + " and "
+        if plot_single(val, glob_vars=glob_vars, printer=printer):
+            succeeded = True
+    if succeeded:
+        lab = lab[:-5]
+        pyplot.ylabel(lab)
+        pyplot.grid(True)
+        pyplot.show()
+        return True
+    return False
 
-    ylabel = ''
-    for arg in args:
-        ylabel += " "+arg
-    ylabel = ylabel.strip()
+
+def plot_single(var, glob_vars={}, printer=ConsolePrinter()):
+    func_str, unknowns = generate_function(var, glob_vars=glob_vars, printer=printer)
+
+    ylabel = var.strip()
     pyplot.ylabel(ylabel)
 
     if len(unknowns) == 0:
@@ -43,9 +58,6 @@ def plot(*args, glob_vars={}, printer=ConsolePrinter()):
             else:
                 x = [-10, 10]
                 pyplot.plot(x, [y, y])
-
-            pyplot.grid(True)
-            pyplot.show()
             return True
         except:
             traceback.print_tb(sys.exc_info()[2])
@@ -79,9 +91,6 @@ def plot(*args, glob_vars={}, printer=ConsolePrinter()):
 
         pyplot.plot(x, y)
         pyplot.xlabel(unknown)
-        pyplot.grid(True)
-
-        pyplot.show()
 
         del glob_vars[unknown]
         return True

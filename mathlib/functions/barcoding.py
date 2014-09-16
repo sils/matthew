@@ -42,7 +42,7 @@ def convolute(*args, glob_vars={}, printer=ConsolePrinter()):
 
 
 def mmult(*args, glob_vars={}, printer=ConsolePrinter()):
-    args = seperate_by_keywords(args, "with")
+    args = seperate_by_keywords(args, ["with"])
     first=save_eval(args[None], glob_vars=glob_vars, printer=printer)
     sec=save_eval(args["with"], glob_vars=glob_vars, printer=printer)
     return array(matrix(first)*matrix(sec))

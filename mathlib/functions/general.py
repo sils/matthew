@@ -98,8 +98,12 @@ def generate_function(*args, glob_vars={}, printer=ConsolePrinter()):
 def seperate_by_keywords(args, keywords):
     result = dict()
     curr = None
+    i = 0
     for arg in args:
         if arg in keywords:
+            if arg in result.keys():
+                curr = arg+"__"+str(i)
+                i += 1
             curr = arg
         else:
             if curr in result.keys():
