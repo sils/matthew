@@ -95,6 +95,19 @@ def generate_function(*args, glob_vars={}, printer=ConsolePrinter()):
     return save_str, unknown_vars
 
 
+def seperate_by_keywords(args, keywords):
+    result = dict()
+    curr = None
+    for arg in args:
+        if arg in keywords:
+            curr = arg
+        else:
+            if curr in result.keys():
+                result[curr] += " "+arg
+            else:
+                result[curr] = arg
+    return result
+
 def save_eval(*args, glob_vars={}, printer=ConsolePrinter()):
     val, unknown = generate_function(*args, glob_vars=glob_vars, printer=printer)
     if len(unknown) > 0:
