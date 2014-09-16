@@ -29,7 +29,8 @@ commands = {
     "mmult": barcoding.mmult,
     "vmult": barcoding.vmult,
     "len": general._len,
-    "invert": barcoding.invert
+    "invert": barcoding.invert,
+    "disturb": barcoding.disturb
 }
 
 import math
