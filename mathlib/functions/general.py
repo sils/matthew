@@ -108,6 +108,9 @@ def seperate_by_keywords(args, keywords):
                 result[curr] = arg
     return result
 
+def _len(*args, glob_vars={}, printer=ConsolePrinter()):
+    return len(save_eval(*args, glob_vars=glob_vars, printer=printer))
+
 def save_eval(*args, glob_vars={}, printer=ConsolePrinter()):
     val, unknown = generate_function(*args, glob_vars=glob_vars, printer=printer)
     if len(unknown) > 0:

@@ -27,7 +27,8 @@ commands = {
     "execute": general.execute,
     "blur": barcoding.convolute,
     "mmult": barcoding.mmult,
-    "vmult": barcoding.vmult
+    "vmult": barcoding.vmult,
+    "len": general._len
 }
 
 import math
