@@ -13,7 +13,7 @@ You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 """
 
-from mathlib.functions import general, plotting, imaging
+from mathlib.functions import general, plotting, imaging, barcoding
 
 commands = {
     "exit": general._exit,
@@ -24,7 +24,8 @@ commands = {
     "plot": plotting.plot,
     "help": general.help,
     "load": imaging.load,
-    "execute": general.execute
+    "execute": general.execute,
+    "blur": barcoding.convolute
 }
 
 import math
