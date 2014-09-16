@@ -26,12 +26,13 @@ def _exit(x=0, glob_vars={}, printer=ConsolePrinter()):
 
 def _print(*args, glob_vars={}, printer=ConsolePrinter()):
     for arg in args:
+        arg = str(arg)
         if arg[0] == arg[-1] == '"':
             printer.print(arg[1:-1], end="")
             continue
 
         if str(arg).lower() in glob_vars:
-            printer.print(glob_vars[str(arg).lower()], end="")
+            printer.print(str(glob_vars[arg.lower()]), end="")
             continue
 
         printer.print(arg, end="")
@@ -45,7 +46,8 @@ def _return(*args, glob_vars={}, printer=ConsolePrinter()):
 
 
 def makevar(variable, glob_vars={}, printer=ConsolePrinter()):
-    if variable.strip() == "":
+    variable = str(variable).lower().strip()
+    if variable == "":
         return " ", True
     if variable in glob_vars:
         return "glob_vars[\""+variable+"\"]", True
@@ -144,7 +146,7 @@ def let(var, be, *vals, glob_vars={}, printer=ConsolePrinter()):
     if val is None:
         return False
 
-    glob_vars[var] = val
+    glob_vars[var.lower().strip()] = val
     return val
 
 def execute(f, glob_vars={}, printer=ConsolePrinter()):

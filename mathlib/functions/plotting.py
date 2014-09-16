@@ -66,7 +66,7 @@ def plot_single(var, glob_vars={}, printer=ConsolePrinter()):
             return False
 
     if len(unknowns) == 1:
-        unknown = unknowns[0]
+        unknown = unknowns[0].lower().strip()
         printer.print("Plotting '{}' with variable '{}'...".format(ylabel, unknown))
         glob_vars[unknown] = 0
         y = []

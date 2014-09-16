@@ -25,7 +25,7 @@ def load(img, into, varname, glob_vars={}, printer=ConsolePrinter()):
         printer.print("Invalid syntax: use 'load <path> into <yourvar>'", color="red")
 
     # FIXME check path
-    glob_vars[varname] = mpimage.imread(img)
+    glob_vars[varname.lower().strip()] = mpimage.imread(img)
 
 
 '''def convolute(*args, glob_vars={}, printer=ConsolePrinter()):
