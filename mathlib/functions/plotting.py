@@ -23,7 +23,6 @@ import sys
 
 def plot(*args, glob_vars={}, printer=ConsolePrinter()):
     splitted = seperate_by_keywords(args, ["and"])
-    print(splitted)
     succeeded = False
     lab = ""
     for val in splitted.values():
