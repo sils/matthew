@@ -22,7 +22,8 @@ import sys
 
 
 def plot(*args, glob_vars={}, printer=ConsolePrinter()):
-    splitted = seperate_by_keywords(args, ["and"])
+    splitted = seperate_by_keywords(args, ["and", "synchronous"])
+    synchronous = "synchronous" in args
     succeeded = False
     lab = ""
     pyplot.figure()
@@ -34,7 +35,7 @@ def plot(*args, glob_vars={}, printer=ConsolePrinter()):
         lab = lab[:-5]
         pyplot.ylabel(lab)
         pyplot.grid(True)
-        pyplot.show(block=False)
+        pyplot.show(block=synchronous)
         return True
     return False
 
