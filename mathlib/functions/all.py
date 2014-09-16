@@ -37,7 +37,7 @@ commands = {
 
 import math
 
-glob_vars={
+glob_vars = {
     "ans": None,
     "sin": math.sin,
     "cos": math.cos,
