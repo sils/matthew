@@ -12,6 +12,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 """
+import numpy
 
 from mathlib.functions import general, plotting, imaging, barcoding
 
@@ -35,7 +36,8 @@ commands = {
     "#": general.comment,
     "//": general.comment,
     "vars": general.vars,
-    "del": general._del
+    "del": general._del,
+    "transpose": general.transposem
 }
 
 import math
@@ -54,5 +56,7 @@ glob_vars = {
     "e": math.e,
     "pi": math.pi,
     "pow": pow,
-    "blur_matrix": barcoding.blur_matrix
+    "blur_matrix": barcoding.blur_matrix,
+    "ones": numpy.ones,
+    "zeros": numpy.zeros
 }

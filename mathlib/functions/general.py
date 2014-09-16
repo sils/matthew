@@ -138,6 +138,13 @@ def help(glob_vars={}, printer=ConsolePrinter()):
 
     return True
 
+
+def transposem(*args, glob_vars={}, printer=ConsolePrinter()):
+    val = save_eval(*args, glob_vars=glob_vars, printer=printer)
+    return matrix(val).transpose()
+
+
+
 def let(var, be, *vals, glob_vars={}, printer=ConsolePrinter()):
     if len(vals) < 1 or be.lower() != "be":
         printer.print("Invalid syntax: use 'let <yourvar> be <yourval(s)>'", color="red")
@@ -148,6 +155,7 @@ def let(var, be, *vals, glob_vars={}, printer=ConsolePrinter()):
 
     glob_vars[var.lower().strip()] = val
     return val
+
 
 def execute(f, glob_vars={}, printer=ConsolePrinter()):
     from mathlib.functions.all import commands
