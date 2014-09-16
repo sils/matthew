@@ -153,8 +153,20 @@ def execute(f, glob_vars={}, printer=ConsolePrinter()):
     parser = LineExecutor(commands=commands, glob_vars=glob_vars, printer=printer)
     file = open(f, "r")
     lines = file.readlines()
+    vars_before = glob_vars.copy().keys()
     for line in lines:
         printer.print(">> "+line)
         parser.exec_line(line)
+
+    vars_after = glob_vars.keys()
+    v = []
+    for _var in vars_after:
+        if not _var in vars_before:
+            v.append(_var)
+
+    printer.print("+-------------------------+")
+    printer.print("|New variables introduced:|")
+    printer.print("+-------------------------+")
+    printer.print(str(v))
 
     return glob_vars["ans"]
