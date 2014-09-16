@@ -17,10 +17,6 @@ from mathlib.functions.general import save_eval, seperate_by_keywords
 from mathlib.output.ConsolePrinter import ConsolePrinter
 
 
-def point_spread_kernel(i, j, sigma, n):
-    return 1/n * exp(-pow((i-j)/(sigma*n), 2))
-
-
 def convolute(*args, glob_vars={}, printer=ConsolePrinter()):
     var = save_eval(*args, glob_vars=glob_vars, printer=printer)
     if "sigma" in glob_vars:
@@ -66,6 +62,10 @@ def mmult(*args, glob_vars={}, printer=ConsolePrinter()):
 
 def vmult(*args, glob_vars={}, printer=ConsolePrinter()):
     return mmult(*args, glob_vars=glob_vars, printer=printer)[0]
+
+
+def point_spread_kernel(i, j, sigma, n):
+    return 1/n * exp(-pow((i-j)/(sigma*n), 2))
 
 
 def blur_matrix(n, sigma):
