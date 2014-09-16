@@ -12,9 +12,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program. If not, see <http://www.gnu.org/licenses/>.
 """
-from math import exp
 from numpy import *
-from mathlib.functions.general import save_eval
+from mathlib.functions.general import save_eval, seperate_by_keywords
 from mathlib.output.ConsolePrinter import ConsolePrinter
 
 
@@ -43,7 +42,11 @@ def convolute(*args, glob_vars={}, printer=ConsolePrinter()):
 
 
 def mmult(*args, glob_vars={}, printer=ConsolePrinter()):
-    pass
+    args = seperate_by_keywords(args, "with")
+    first=save_eval(args[None], glob_vars=glob_vars, printer=printer)
+    sec=save_eval(args["with"], glob_vars=glob_vars, printer=printer)
+    return array(matrix(first)*matrix(sec))[0]
+
 
 
 def blur_matrix(n, sigma):
