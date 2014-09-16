@@ -40,3 +40,17 @@ def convolute(*args, glob_vars={}, printer=ConsolePrinter()):
         res.append(this)
 
     return array(res)
+
+
+def mmult(*args, glob_vars={}, printer=ConsolePrinter()):
+    pass
+
+
+def blur_matrix(n, sigma):
+    a = zeros((n,n), dtype=float)
+
+    for i in range(0,n):
+        for j in range(0,n):
+            a[i][j] = point_spread_kernel(i,j,sigma,n)
+
+    return array(a)

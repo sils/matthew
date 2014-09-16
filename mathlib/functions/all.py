@@ -43,5 +43,6 @@ glob_vars={
     "exp": math.exp,
     "e": math.e,
     "pi": math.pi,
-    "pow": pow
+    "pow": pow,
+    "blur_matrix": barcoding.blur_matrix
 }
