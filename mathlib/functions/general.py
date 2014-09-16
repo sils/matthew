@@ -83,6 +83,11 @@ def generate_function(*args, glob_vars={}, printer=ConsolePrinter()):
     return save_str, unknown_vars
 
 
+def _del(var, glob_vars={}, printer=ConsolePrinter()):
+    del glob_vars[str(var).lower().strip()]
+    return glob_vars["ans"]
+
+
 def vars(glob_vars={}, printer=ConsolePrinter()):
     printer.print("The following variables are available:")
     printer.print(*(glob_vars.keys()), delimiter=", ")

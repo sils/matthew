@@ -34,7 +34,8 @@ commands = {
     "disturb": barcoding.disturb,
     "#": general.comment,
     "//": general.comment,
-    "vars": general.vars
+    "vars": general.vars,
+    "del": general._del
 }
 
 import math
