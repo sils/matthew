@@ -154,6 +154,7 @@ def execute(f, glob_vars={}, printer=ConsolePrinter()):
     file = open(f, "r")
     lines = file.readlines()
     for line in lines:
+        printer.print(">> "+line)
         parser.exec_line(line)
 
     return glob_vars["ans"]
