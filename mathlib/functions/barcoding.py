@@ -45,10 +45,10 @@ def invert(*args, glob_vars={}, printer=ConsolePrinter()):
 
 def disturb(*args, glob_vars={}, printer=ConsolePrinter()):
     var = save_eval(*args, glob_vars=glob_vars, printer=printer)
-    off = random.random() - 0.5
+    off = (random.random() - 0.5)*0.02
     res = []
     for val in var:
-        res.append(val + (random.random()-0.5)*0.009 + off*0.02)
+        res.append(val + (random.random()-0.5)*0.009 + off)
 
     return array(res)
 

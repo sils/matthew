@@ -59,5 +59,6 @@ glob_vars = {
     "blur_matrix": barcoding.blur_matrix,
     "ones": numpy.ones,
     "zeros": numpy.zeros,
-    "eye": numpy.eye
+    "eye": numpy.eye,
+    "eps": numpy.finfo(float).eps
 }
