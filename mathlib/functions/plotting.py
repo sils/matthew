@@ -52,7 +52,7 @@ def plot_single(var, glob_vars={}, printer=ConsolePrinter()):
             y = eval(func_str)
 
             if isinstance(y, ndarray):
-                if len(y.shape) > 2:
+                if len(y.shape) > 1:
                     pyplot.imshow(y)
                 else:
                     pyplot.plot(y)
