@@ -25,6 +25,7 @@ def plot(*args, glob_vars={}, printer=ConsolePrinter()):
     splitted = seperate_by_keywords(args, ["and"])
     succeeded = False
     lab = ""
+    pyplot.figure()
     for val in splitted.values():
         lab = lab + val + " and "
         if plot_single(val, glob_vars=glob_vars, printer=printer):
@@ -33,7 +34,7 @@ def plot(*args, glob_vars={}, printer=ConsolePrinter()):
         lab = lab[:-5]
         pyplot.ylabel(lab)
         pyplot.grid(True)
-        pyplot.show()
+        pyplot.show(block=False)
         return True
     return False
 
