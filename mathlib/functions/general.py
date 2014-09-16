@@ -16,6 +16,7 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 import string
 import sys
 from numpy import *
+from mathlib.output.NullPrinter import NullPrinter
 from mathlib.output.ConsolePrinter import ConsolePrinter
 from mathlib.parsing.LineExecutor import LineExecutor
 
@@ -141,12 +142,13 @@ def let(var, be, *vals, glob_vars={}, printer=ConsolePrinter()):
 def execute(f, glob_vars={}, printer=ConsolePrinter()):
     from mathlib.functions.all import commands
     # TODO take a logprinter here
-    parser = LineExecutor(commands=commands, glob_vars=glob_vars, printer=printer)
+    nullprinter = NullPrinter()
+    parser = LineExecutor(commands=commands, glob_vars=glob_vars, printer=nullprinter)
     file = open(f, "r")
     lines = file.readlines()
     vars_before = glob_vars.copy().keys()
     for line in lines:
-        printer.print(">> "+line)
+        printer.print(">> "+line.strip(" \n"))
         parser.exec_line(line)
 
     vars_after = glob_vars.keys()

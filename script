@@ -1,4 +1,7 @@
 let input be [1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,0,0,0,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1]
+# This will put
+# 1/n * exp(-pow((i-j)/(sigma*n), 2))
+# into a_{ij} with the given n (42) and sigma (0.02)
 let blurring be blur_matrix(42,0.02)
 
 vmult input with blurring
