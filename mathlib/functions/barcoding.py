@@ -47,6 +47,16 @@ def invert(*args, glob_vars={}, printer=ConsolePrinter()):
     return array(m.I)
 
 
+def disturb(*args, glob_vars={}, printer=ConsolePrinter()):
+    var = save_eval(*args, glob_vars=glob_vars, printer=printer)
+    off = random.random() - 0.5
+    res = []
+    for val in var:
+        res.append(val + (random.random()-0.5)*0.009 + off*0.02)
+
+    return array(res)
+
+
 def mmult(*args, glob_vars={}, printer=ConsolePrinter()):
     args = seperate_by_keywords(args, ["with"])
     first=save_eval(args[None], glob_vars=glob_vars, printer=printer)
