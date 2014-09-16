@@ -26,7 +26,8 @@ commands = {
     "load": imaging.load,
     "execute": general.execute,
     "blur": barcoding.convolute,
-    "mmult": barcoding.mmult
+    "mmult": barcoding.mmult,
+    "vmult": barcoding.vmult
 }
 
 import math
