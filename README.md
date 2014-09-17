@@ -11,4 +11,4 @@ State
 What you get when you clone this is a very early prototype. It is badly coded
 and if I dont throw away this prototype completely I'm a jerk. In addition it
 is even uncertain if I abandon this project at some point. Dont throw your time
-in here if its not for fun.
+in here if its not for fun. The syntax will probably change as well in the future.
