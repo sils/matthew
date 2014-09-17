@@ -1,0 +1,2 @@
+load s.png into img
+let m be img_blur_matrix(66, 120, 0.02)

@@ -115,8 +115,14 @@ def seperate_by_keywords(args, keywords):
                 result[curr] = arg
     return result
 
+
 def _len(*args, glob_vars={}, printer=ConsolePrinter()):
     return len(save_eval(*args, glob_vars=glob_vars, printer=printer))
+
+
+def _shape(*args, glob_vars={}, printer=ConsolePrinter()):
+    return save_eval(*args, glob_vars=glob_vars, printer=printer).shape
+
 
 def save_eval(*args, glob_vars={}, printer=ConsolePrinter()):
     val, unknown = generate_function(*args, glob_vars=glob_vars, printer=printer)

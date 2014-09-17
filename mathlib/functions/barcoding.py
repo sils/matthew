@@ -68,15 +68,17 @@ def point_spread_kernel(i, j, sigma, n):
     return 1/n * exp(-pow((i-j)/(sigma*n), 2))
 
 
-def ext_blur_matrix(n, sigma):
-    def index(i,j):
-        return i*n + j
-    result = zeros((n,n))
-    for i in range(0,n):
-        for j in range(0,n):
-            for k in range(0, n):
-                for l in range(0, n):
-                    result[index(i, j)][index(k, l)] = point_spread_kernel(i-k, j-l, sigma, n)
+def index(_i, _j, n):
+    return _i*n + _j
+def ext_blur_matrix(n, m, sigma):
+    result = zeros((n*m, n*m))
+    for i in range(0, n):
+        print("still iterating")
+        for j in range(0, m):
+            for _k in range(0, n):
+                for l in range(0, m):
+                    result[index(i, j, n)][index(_k, l, n)] = point_spread_kernel(i-_k, j-l, sigma, n*m)
+    return result
 
 
 def blur_matrix(n, sigma):
