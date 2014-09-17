@@ -113,7 +113,13 @@ def seperate_by_keywords(args, keywords):
                 result[curr] += " "+arg
             else:
                 result[curr] = arg
-    return result
+    return
+
+
+def condition(*args, glob_vars={}, printer=ConsolePrinter()):
+    val = save_eval(*args, glob_vars=glob_vars, printer=printer)
+
+    return linalg.cond(matrix(val))
 
 
 def _len(*args, glob_vars={}, printer=ConsolePrinter()):

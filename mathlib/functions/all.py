@@ -38,7 +38,8 @@ commands = {
     "//": general.comment,
     "vars": general.vars,
     "del": general._del,
-    "transpose": general.transposem
+    "transpose": general.transposem,
+    "condition": general.condition
 }
 
 import math
