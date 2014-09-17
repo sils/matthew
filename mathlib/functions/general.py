@@ -113,7 +113,7 @@ def seperate_by_keywords(args, keywords):
                 result[curr] += " "+arg
             else:
                 result[curr] = arg
-    return
+    return result
 
 
 def condition(*args, glob_vars={}, printer=ConsolePrinter()):
