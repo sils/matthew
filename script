@@ -1,18 +1,31 @@
 let input be [1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,0,0,0,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1]
+len input
+let length be ans
+
 # This will put
 # 1/n * exp(-pow((i-j)/(sigma*n), 2))
 # into a_{ij} with the given n (42) and sigma (0.02)
-len input
-let blurring be blur_matrix(ans, 0.02)
+let blurring be blur_matrix(length, 0.035)
 
+# vmult is a matrix vector multiplication
 vmult input with blurring
 let blurred be ans
 
+# Puts some random values on it
 disturb blurred
 let disturbed be ans
 
 invert blurring
-let unblurring be ans
+let normal_unblurring be ans
 
-vmult disturbed with unblurring
-let unblurred be ans
+vmult disturbed with normal_unblurring
+let normal_unblurred be ans
+
+
+# Regularized
+let reg_unblurring be normal_unblurring + eye(length)*200
+
+vmult disturbed with reg_unblurring
+let reg_unblurred be ans
+
+plot reg_unblurred and normal_unblurred and input
