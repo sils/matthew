@@ -1,0 +1,3 @@
+let input be [1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,0,0,0,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1]
+let length be len(input)
+let input be input*1.004 - ones(length)*0.002

@@ -59,7 +59,7 @@ def vmult(*args, glob_vars={}, printer=ConsolePrinter()):
 
 
 def point_spread_kernel(i, j, sigma, n):
-    return 1/n * exp(-pow((i-j)/(sigma*n), 2))
+    return 1/n * exp(-(i*i+j*j)/(sigma*sigma*n*n))
 
 
 def index(_i, _j, n):
@@ -80,6 +80,6 @@ def blur_matrix(n, sigma):
 
     for i in range(0, n):
         for j in range(0,n):
-            a[i][j] = point_spread_kernel(i, j, sigma, n)
+            a[i][j] = point_spread_kernel(i-j, 0, sigma, n)
 
     return array(a)

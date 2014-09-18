@@ -1,6 +1,5 @@
-let input be [1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,0,0,0,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1]
-let length be len(input)
-let input be input*1.004 - ones(length)*0.002
+# Get the input and its length
+execute in
 
 # This will put
 # 1/n * exp(-pow((i-j)/(sigma*n), 2))
@@ -27,4 +26,5 @@ let reg_unblurring be invert(blurring + eye(length)*0.058)
 vmult disturbed with reg_unblurring
 let reg_unblurred be ans*2
 
+let unreg_result be binarize(normal_unblurred, average(normal_unblurred))
 let result be binarize(reg_unblurred, average(reg_unblurred))
