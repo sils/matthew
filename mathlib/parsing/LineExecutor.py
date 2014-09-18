@@ -62,7 +62,7 @@ class LineExecutor:
                                color="red")
             return
 
-        self.printer.print("\n {} = {}".format(self.ANS, retval), color='dark gray')
+        self.printer.print("\n {} = {}".format(self.ANS, retval), color='bright blue')
 
         return retval
 
