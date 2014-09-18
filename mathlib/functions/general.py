@@ -122,14 +122,6 @@ def condition(*args, glob_vars={}, printer=ConsolePrinter()):
     return linalg.cond(matrix(val))
 
 
-def _len(*args, glob_vars={}, printer=ConsolePrinter()):
-    return len(save_eval(*args, glob_vars=glob_vars, printer=printer))
-
-
-def _shape(*args, glob_vars={}, printer=ConsolePrinter()):
-    return save_eval(*args, glob_vars=glob_vars, printer=printer).shape
-
-
 def save_eval(*args, glob_vars={}, printer=ConsolePrinter()):
     val, unknown = generate_function(*args, glob_vars=glob_vars, printer=printer)
     if len(unknown) > 0:
@@ -149,12 +141,6 @@ def help(glob_vars={}, printer=ConsolePrinter()):
         printer.print("  {}".format(key))
 
     return True
-
-
-def transposem(*args, glob_vars={}, printer=ConsolePrinter()):
-    val = save_eval(*args, glob_vars=glob_vars, printer=printer)
-    return matrix(val).transpose()
-
 
 
 def let(var, be, *vals, glob_vars={}, printer=ConsolePrinter()):

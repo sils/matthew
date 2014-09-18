@@ -1,6 +1,5 @@
 let input be [1,1,1,1,1,0,0,0,0,0,0,0,0,1,1,1,0,0,0,1,1,1,1,1,1,1,0,0,0,0,1,1,1,1,1,1,0,0,0,1,1,1]
-len input
-let length be ans
+let length be len(input)
 
 # This will put
 # 1/n * exp(-pow((i-j)/(sigma*n), 2))

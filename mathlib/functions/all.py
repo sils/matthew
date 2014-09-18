@@ -30,15 +30,12 @@ commands = {
     "blur": barcoding.convolute,
     "mmult": barcoding.mmult,
     "vmult": barcoding.vmult,
-    "len": general._len,
-    "shape": general._shape,
     "invert": barcoding.invert,
     "disturb": barcoding.disturb,
     "#": general.comment,
     "//": general.comment,
     "vars": general.vars,
     "del": general._del,
-    "transpose": general.transposem,
     "condition": general.condition
 }
 
@@ -64,5 +61,8 @@ glob_vars = {
     "zeros": numpy.zeros,
     "eye": numpy.eye,
     "eps": numpy.finfo(float).eps,
-    "svd": lambda x: numpy.linalg.svd(numpy.matrix(x), compute_uv=False)
+    "svd": lambda x: numpy.linalg.svd(numpy.matrix(x), compute_uv=False),
+    "len": lambda x: len(x),
+    "shape": lambda x: numpy.matrix(x).shape,
+    "transpose": lambda x: numpy.matrix(x).transpose()
 }
