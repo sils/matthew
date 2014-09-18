@@ -61,7 +61,7 @@ glob_vars = {
     "zeros": numpy.zeros,
     "eye": numpy.eye,
     "eps": numpy.finfo(float).eps,
-    "svd": lambda x: numpy.linalg.svd(numpy.matrix(x), compute_uv=False),
+    "svd": lambda x, compute_uv=False: numpy.linalg.svd(numpy.matrix(x), compute_uv=compute_uv),
     "len": lambda x: len(x),
     "shape": lambda x: numpy.matrix(x).shape,
     "transpose": lambda x: numpy.matrix(x).transpose()

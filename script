@@ -26,6 +26,6 @@ invert blurring + eye(length)*0.058
 let reg_unblurring be ans
 
 vmult disturbed with reg_unblurring
-let reg_unblurred be ans
+let reg_unblurred be ans*2
 
 plot reg_unblurred and normal_unblurred and input
