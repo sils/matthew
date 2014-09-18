@@ -63,5 +63,6 @@ glob_vars = {
     "ones": numpy.ones,
     "zeros": numpy.zeros,
     "eye": numpy.eye,
-    "eps": numpy.finfo(float).eps
+    "eps": numpy.finfo(float).eps,
+    "svd": lambda x: numpy.linalg.svd(numpy.matrix(x), compute_uv=False)
 }
