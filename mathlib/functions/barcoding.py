@@ -37,12 +37,6 @@ def convolute(*args, glob_vars={}, printer=ConsolePrinter()):
     return array(res)
 
 
-def invert(*args, glob_vars={}, printer=ConsolePrinter()):
-    val = save_eval(*args, glob_vars=glob_vars, printer=printer)
-    m = matrix(val)
-    return array(m.I)
-
-
 def disturb(*args, glob_vars={}, printer=ConsolePrinter()):
     var = save_eval(*args, glob_vars=glob_vars, printer=printer)
     off = (random.random() - 0.5)*0.02

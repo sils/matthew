@@ -116,12 +116,6 @@ def seperate_by_keywords(args, keywords):
     return result
 
 
-def condition(*args, glob_vars={}, printer=ConsolePrinter()):
-    val = save_eval(*args, glob_vars=glob_vars, printer=printer)
-
-    return linalg.cond(matrix(val))
-
-
 def save_eval(*args, glob_vars={}, printer=ConsolePrinter()):
     val, unknown = generate_function(*args, glob_vars=glob_vars, printer=printer)
     if len(unknown) > 0:

@@ -14,16 +14,14 @@ let blurred be ans
 disturb blurred
 let disturbed be ans
 
-invert blurring
-let normal_unblurring be ans
+let normal_unblurring be invert(blurring)
 
 vmult disturbed with normal_unblurring
 let normal_unblurred be ans
 
 
 # Regularized
-invert blurring + eye(length)*0.058
-let reg_unblurring be ans
+let reg_unblurring be invert(blurring + eye(length)*0.058)
 
 vmult disturbed with reg_unblurring
 let reg_unblurred be ans*2

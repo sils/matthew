@@ -30,13 +30,11 @@ commands = {
     "blur": barcoding.convolute,
     "mmult": barcoding.mmult,
     "vmult": barcoding.vmult,
-    "invert": barcoding.invert,
     "disturb": barcoding.disturb,
     "#": general.comment,
     "//": general.comment,
     "vars": general.vars,
     "del": general._del,
-    "condition": general.condition
 }
 
 import math
@@ -76,5 +74,7 @@ glob_vars = {
     "shape": lambda x: numpy.matrix(x).shape,
     "transpose": lambda x: numpy.matrix(x).transpose(),
     "average": lambda x: numpy.average(x),
-    "binarize": binarize
+    "binarize": binarize,
+    "condition": lambda val: numpy.linalg.cond(numpy.matrix(val)),
+    "invert": lambda x: numpy.matrix(x).I
 }
