@@ -41,6 +41,16 @@ commands = {
 
 import math
 
+
+def binarize(x, threshold):
+    res = []
+    for val in x:
+        if val < threshold:
+            res.append(0)
+        else:
+            res.append(1)
+    return numpy.array(res)
+
 glob_vars = {
     "ans": None,
     "sin": math.sin,
@@ -64,5 +74,7 @@ glob_vars = {
     "svd": lambda x, compute_uv=False: numpy.linalg.svd(numpy.matrix(x), compute_uv=compute_uv),
     "len": lambda x: len(x),
     "shape": lambda x: numpy.matrix(x).shape,
-    "transpose": lambda x: numpy.matrix(x).transpose()
+    "transpose": lambda x: numpy.matrix(x).transpose(),
+    "average": lambda x: numpy.average(x),
+    "binarize": binarize
 }
